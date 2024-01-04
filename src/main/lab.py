@@ -42,6 +42,15 @@ def sampleCosineSim():
     print(cosine_sim)
 
 
+# Complete the following function to calculate cosine similarity of two texts.
+# It should do the following
+# 1. tokenize and vectorize the corpus argument
+# 2. Return the cosine similarity result of the vectorized text
+# Feel free to play with different text in app.py file, and see if you can find texts that are not at all similar (< .2) or very similar (> .6)!
+def cosSimExercise(corpus:list[str]):
+    return
+
+    
 """
 Jaccard similarity is a measure of similarity between two sets. It is defined as the size of the intersection divided by the size of the union of the sets. The formula for Jaccard similarity is the size of intersection of two sets over the size of union of two sets.
 
@@ -66,3 +75,12 @@ def sampleJaccard():
 
     # Print the Jaccard similarity
     print(f"Jaccard Similarity: {jaccard_sim}")
+
+# Use the above jaccard_similarity function to calculate jaccard similarity of two texts in this function.
+# Come up with 2 sets that will result in jaccard similarity index of 0.5 or greater 
+def jaccardExercise():
+    set1 = {} # fill this set with your own words
+    set2 = {} # also fill this set with your own words
+
+    jaccard_sim = None
+    return jaccard_sim

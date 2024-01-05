@@ -15,7 +15,24 @@ Cosine Similarity is widely used in NLP and information retrieval, particularly 
 """
 
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+# This is a python implementation of cosine similarity, using numpy
+def cosine_similarity(vec1, vec2):
+    if len(vec1) != len(vec2) :
+        return None
+    
+    # Compute the dot product between 2 vectors
+    dot_prod = np.dot(vec1, vec2)
+    
+    # Compute the norms of the 2 vectors
+    norm_vec1 = np.sqrt(np.sum(vec1**2)) 
+    norm_vec2 = np.sqrt(np.sum(vec2**2))
+    
+    # Compute the cosine similarity
+    cosine_similarity = dot_prod / (norm_vec1 * norm_vec2)
+    
+    return cosine_similarity
 
 def sampleCosineSim():
     # Sample texts
@@ -23,21 +40,13 @@ def sampleCosineSim():
     text2 = "I'm intrigued by the wonders of natural language processing."
 
     # Tokenize and vectorize the texts
-    vectorizer = CountVectorizer().fit_transform([text1, text2])
+    vectorizer = CountVectorizer().fit_transform([text1, text2]).toarray()
     print(vectorizer)
 
     # Calculate cosine similarity
-    cosine_sim = cosine_similarity(vectorizer)
+    cosine_sim = cosine_similarity(vectorizer[0, :], vectorizer[1, :])
 
-    # Print the cosine similarity matrix
-    # This matrix is the following shape
-    # 
-    #   1     2  
-    # 1[1,1  1,2]
-    # 2[1,2  2,2]
-    # Where the left to right diagonal cells are comparing text 1 to itself, and 2 to itself. the other elements in the matrix calculates the cosine similarity between text 1 and 2.
-
-    # Cosine Similarity ranges from 0 to 1, 1 being identical vectors
+    # Cosine Similarity ranges from 0 to 1, a number closer to 1 means that they are more similar
     print("Cosine Similarity:")
     print(cosine_sim)
 
@@ -48,6 +57,7 @@ def sampleCosineSim():
 # 2. Return the cosine similarity result of the vectorized text
 # Feel free to play with different text in app.py file, and see if you can find texts that are not at all similar (< .2) or very similar (> .6)!
 def cosSimExercise(corpus:list[str]):
+    # TODO: Complete this function
     return
 
     
@@ -64,11 +74,15 @@ def jaccard_similarity(set1, set2):
     union = len(set1.union(set2))
     return intersection / union if union != 0 else 0
 
+from nltk import word_tokenize
 # Here is the sample usage of jaccard similarity
 def sampleJaccard():
-    # Sample sets of words
-    set1 = {"natural", "language", "processing", "fascinating"}
-    set2 = {"intrigued", "by", "the", "wonders", "of", "natural", "language", "processing"}
+    text1 = "Natural language processing is fascinating."
+    text2 = "I'm intrigued by the wonders of natural language processing."
+
+    # Tokenize the sentences and turn them into sets
+    set1 = set(word_tokenize(text1))
+    set2 = set(word_tokenize(text2))
 
     # Calculate Jaccard similarity
     jaccard_sim = jaccard_similarity(set1, set2)
@@ -77,10 +91,12 @@ def sampleJaccard():
     print(f"Jaccard Similarity: {jaccard_sim}")
 
 # Use the above jaccard_similarity function to calculate jaccard similarity of two texts in this function.
-# Come up with 2 sets that will result in jaccard similarity index of 0.5 or greater 
+# Come up with 2 texts that will result in jaccard similarity index of 0.3 or greater 
 def jaccardExercise():
-    set1 = {} # fill this set with your own words
-    set2 = {} # also fill this set with your own words
+    # TODO: Complete this function
+    text1 = ""
+    text2 = ""
 
     jaccard_sim = None
+
     return jaccard_sim
